@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name               = "TalkingDataAppAnalytics"
-  s.version            = "4.0.9"
+  s.version            = "4.0.13"
   s.summary            = "TalkingData AppAnalytics"
   s.homepage           = "https://www.talkingdata.com/"
   s.license            = "MIT"

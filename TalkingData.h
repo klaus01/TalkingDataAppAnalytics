@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+#if TARGET_OS_IOS
 typedef NS_ENUM(NSUInteger, TDAccountType) {
     TDAccountTypeAnonymous      = 0,    // 匿名帐户
     TDAccountTypeRegistered     = 1,    // 显性注册帐户
@@ -27,8 +28,10 @@ typedef NS_ENUM(NSUInteger, TDAccountType) {
     TDAccountTypeType9          = 19,   // 自定义类型9
     TDAccountTypeType10         = 20    // 自定义类型10
 };
+#endif
 
 
+#if TARGET_OS_IOS
 @interface TalkingDataOrder : NSObject
 
 /**
@@ -70,6 +73,7 @@ typedef NS_ENUM(NSUInteger, TDAccountType) {
 - (TalkingDataShoppingCart *)addItem:(NSString *)itemId category:(NSString *)category name:(NSString *)name unitPrice:(int)unitPrice amount:(int)amount;
 
 @end
+#endif
 
 // 以下枚举用于WatchApp页面追踪
 typedef enum {
@@ -94,6 +98,7 @@ typedef enum {
  */
 + (void)setLogEnabled:(BOOL)enable;
 
+#if TARGET_OS_IOS
 /**
  *  @method setExceptionReportEnabled
  *  是否捕捉程序崩溃记录（可选）
@@ -109,8 +114,10 @@ typedef enum {
  *  @param  enable      默认是NO
  */
 + (void)setSignalReportEnabled:(BOOL)enable;
+#endif
 
 
+#if TARGET_OS_IOS
 /**
  *  @method setLatitude:longitude:
  *  设置位置信息（可选）
@@ -118,7 +125,9 @@ typedef enum {
  *  @param  longitude   经度
  */
 + (void)setLatitude:(double)latitude longitude:(double)longitude;
+#endif
 
+#if TARGET_OS_IOS
 /**
  *  @method	sessionStarted:withChannelId:
  *  初始化统计实例，请在application:didFinishLaunchingWithOptions:方法里调用
@@ -126,16 +135,12 @@ typedef enum {
  *  @param  channelId   渠道名，如“app store”（可选）
  */
 + (void)sessionStarted:(NSString *)appKey withChannelId:(NSString *)channelId;
-
-/**
- *  @method	initWithWatch:
- *  初始化WatchApp统计实例，请在每个入口类的init方法里调用
- *  @param  appKey      应用的唯一标识，统计后台注册得到
- */
-+ (void)initWithWatch:(NSString *)appKey;
+#endif
 
 
 
+
+#if TARGET_OS_IOS
 /**
  *  @method onRegister  注册
  *  @param  accountId   帐户ID
@@ -152,6 +157,7 @@ typedef enum {
  */
 + (void)onLogin:(NSString *)accountId type:(TDAccountType)type name:(NSString *)name;
 
+#endif
 
 /**
  *  @method trackEvent
@@ -222,6 +228,7 @@ typedef enum {
  */
 + (void)trackPageEnd:(NSString *)pageName;
 
+#if TARGET_OS_IOS
 /**
  *  @method onPlaceOrder    下单
  *  @param  accountId       帐号            类型:NSString
@@ -261,6 +268,8 @@ typedef enum {
  *  @param  shoppingCart    购物车信息       类型:TalkingDataShoppingCart
  */
 + (void)onViewShoppingCart:(TalkingDataShoppingCart *)shoppingCart;
+#endif
+
 
 
 
